@@ -12,11 +12,11 @@ public class RevertStringController {
     @Autowired
     RevertStringService revertStringService;
 
-    @GetMapping("/")
-    public String usePostPls(){
-        return ("use post request in http://localhost:8080/revert/(your name) to see the output");
+    @GetMapping("/?{name}")
+    public String usePostPls(@PathVariable(required = false, value = "name") String name){
+        return ("your name is "+name+" now use post request to revert it");
     }
-    @PostMapping(value = "/revert/?{name}")
+    @PostMapping(value = "/?{name}")
     public String revertString(@PathVariable(required = false, value = "name") String name){
         return revertStringService.revertStringName(name);
     }
