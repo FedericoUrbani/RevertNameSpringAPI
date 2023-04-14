@@ -13,11 +13,11 @@ public class RevertStringController {
     RevertStringService revertStringService;
 
     @GetMapping("/{name}")
-    public String usePostPls(@PathVariable String name){
+    public String usePostPls(@PathVariable (value = "name")String name){
         return name.length() == 0? "put a name at the end of the url to show it" : "your name is "+ name +" now use post request to revert it";
     }
     @PostMapping(value = "/{name}")
-    public String revertString(@PathVariable(required = false, value = "name") String name){
+    public String revertString(@PathVariable(value = "name") String name){
         return revertStringService.revertStringName(name);
     }
 
